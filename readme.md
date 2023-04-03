@@ -1,4 +1,4 @@
-## creation nouveau projet ##
+## creation nouveau projet
 
 composer create-project symfony/skeleton:"6.2.*" ecom
 cd ecom
@@ -13,6 +13,12 @@ ajout des contributors
 ## Npm install
 Ajout de npm pour encore
 
+composer require symfony/webpack-encore-bundle
+
+npm install
+
+npm install @symfony/webpack-encore --save-dev
+
 ## Default Controller
 creation default controller
 template création pour modifier afficher
@@ -22,11 +28,40 @@ template création pour modifier afficher
 Création de la base de donnée
 php bin/console doctrine:database:create
 
+## User et conection
+
+composer require symfony/security-bundle
+
+php bin/console make:user
+ The name of the security user class (e.g. User) [User]:
+ > User
+
+ Do you want to store user data in the database (via Doctrine)? (yes/no) [yes]:
+ > yes
+
+ Enter a property name that will be the unique "display" name for the user (e.g. email, username, uuid) [email]:
+ > email
+
+ Will this app need to hash/check user passwords? Choose No if passwords are not needed or will be checked/hashed by some other system (e.g. a single sign-on server).
+
+ Does this app need to hash/check user passwords? (yes/no) [yes]:
+ > yes
+
+ php bin/console make:migration
+ php bin/console doctrine:migrations:migrate
+
+ composer require symfonycasts/verify-email-bundle
+
+
 ## Création Entité
 
 php bin/console make:entity
 
 
-php bin/console make:migration 
+php bin/console make:migration
 php bin/console doctrine:migrations:migrate
+
+### restaurant
+    name
+    cp
 
