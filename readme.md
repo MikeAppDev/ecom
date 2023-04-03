@@ -52,6 +52,13 @@ php bin/console make:user
 
  composer require symfonycasts/verify-email-bundle
 
+ composer require --dev symfony/profiler-pack
+
+ php bin/console make:controller Login  
+
+ ### mailer 
+ composer require symfony/mailer
+
 
 ## Création Entité
 
