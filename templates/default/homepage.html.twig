@@ -5,8 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1>EatCom</h1>
-    
-    <p>Bienvenu sur EatCom</p>
-
+<div class="pt-3 text-center">
+    <br>
+        <h1>Accueil</h1>
+    <br>    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        BIENVENU <br><span style="font-size: 3em; color: green;">{{ app.user.name }} !</span>
+    {% else %}
+    <p>Bonjour, merci de vous connecter pour profiter de toutes les incroyables fonctionnalités de ce site !</p>
+    {% endif %}
+    <br>
+    </div>
 {% endblock %}

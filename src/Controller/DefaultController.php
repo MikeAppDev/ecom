@@ -2,14 +2,21 @@
 
 namespace App\Controller;
 
+use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends AbstractController
 {
-    public function index(): Response
+
+#[Route('/restaurants', name: 'restaurants')]
+    public function index(RestaurantRepository $repository): Response
     {
+
+        $donnees = $repository->findAll();
+
+
         // Affichage de la vue
-        return $this->render('default/homepage.html.twig');
+        return $this->render('default/homepage.html.twig',);
     }
 }

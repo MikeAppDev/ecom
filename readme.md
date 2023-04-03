@@ -56,6 +56,8 @@ php bin/console make:user
 
  php bin/console make:controller Login  
 
+ A REVOIR POUR UTILISATION AVEC RETOUR DE MAIL
+
  ### mailer 
  composer require symfony/mailer
 
