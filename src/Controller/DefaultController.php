@@ -10,9 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
 
+// #[Route('/restaurants', name: 'restaurants')]
     public function index(RestaurantRepository $repository): Response
     {
         // Affichage de la vue
-        return $this->render('default/homepage.html.twig');
+        return $this->render('default/homepage.html.twig', [
+            'donnees' => $donnees
+        ]);
     }
 }

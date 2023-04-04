@@ -30,10 +30,15 @@ template création pour modifier afficher
 Création de la base de donnée
 php bin/console doctrine:database:create
 
+## serveur
+php -S localhost:8000 -t public/
+
+
 ## User et conection
 
 composer require symfony/security-bundle
 
+### make:User
 php bin/console make:user
  The name of the security user class (e.g. User) [User]:
  > User
@@ -52,16 +57,45 @@ php bin/console make:user
  php bin/console make:migration
  php bin/console doctrine:migrations:migrate
 
+### Make Auth
+ php bin/console make:auth
+
+What style of authentication do you want? [Empty authenticator]:
+ [0] Empty authenticator
+ [1] Login form authenticator
+> 0
+
+The class name of the authenticator to create (e.g. AppCustomAuthenticator):
+> LoginFormAuthenticator
+
+Choose a name for the controller class (e.g. SecurityController) [SecurityController]:
+> SecurityController
+
+Do you want to generate a '/logout' URL? (yes/no) [yes]:
+> yes
+
+ created: src/Security/LoginFormAuthenticator.php
+ updated: config/packages/security.yaml
+ created: src/Controller/SecurityController.php
+ created: templates/security/login.html.twig
+
+#### pour vérifier email a tester ????
  composer require symfonycasts/verify-email-bundle
 
  composer require --dev symfony/profiler-pack
 
- php bin/console make:controller Login  
+ <!-- php bin/console make:controller Login   -->
 
  A REVOIR POUR UTILISATION AVEC RETOUR DE MAIL
 
- ### mailer 
- composer require symfony/mailer
+ ## mailer 
+
+  composer require symfony/mailer
+
+
+### MailTrap
+ https://mailtrap.io/blog/send-emails-in-symfony/
+
 
 
 ## Création Entité
@@ -76,8 +110,13 @@ php bin/console doctrine:migrations:migrate
     name
     cp
 
+## Creation restaurant Controler
 
-## Git Clone
+php bin/console make:controller
+ceci génère automatiquement un template
+
+
+## Git Clone Recup projet
 git clone + le nom du projet.
 composer install
 
