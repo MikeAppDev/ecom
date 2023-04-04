@@ -14,8 +14,6 @@ class DefaultController extends AbstractController
     public function index(RestaurantRepository $repository): Response
     {
         // Affichage de la vue
-        return $this->render('default/homepage.html.twig', [
-            'donnees' => $donnees
-        ]);
+        return $this->render('default/homepage.html.twig');
     }
 }
