@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,18 @@ class Restaurant
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $avis = null;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Plat::class)]
+    private Collection $plats;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Avis::class)]
+    private Collection $avis2;
+
+    public function __construct()
+    {
+        $this->plats = new ArrayCollection();
+        $this->avis2 = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +119,66 @@ class Restaurant
     public function setAvis(?string $avis): self
     {
         $this->avis = $avis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Plat>
+     */
+    public function getPlats(): Collection
+    {
+        return $this->plats;
+    }
+
+    public function addPlat(Plat $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats->add($plat);
+            $plat->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plat $plat): self
+    {
+        if ($this->plats->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getRestaurant() === $this) {
+                $plat->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis2(): Collection
+    {
+        return $this->avis2;
+    }
+
+    public function addAvis2(Avis $avis2): self
+    {
+        if (!$this->avis2->contains($avis2)) {
+            $this->avis2->add($avis2);
+            $avis2->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvis2(Avis $avis2): self
+    {
+        if ($this->avis2->removeElement($avis2)) {
+            // set the owning side to null (unless already changed)
+            if ($avis2->getRestaurant() === $this) {
+                $avis2->setRestaurant(null);
+            }
+        }
 
         return $this;
     }
