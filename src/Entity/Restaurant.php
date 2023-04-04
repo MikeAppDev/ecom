@@ -19,6 +19,12 @@ class Restaurant
     #[ORM\Column]
     private ?int $cp = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adress = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $specialite = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +50,30 @@ class Restaurant
     public function setCp(int $cp): self
     {
         $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getAdress(): ?string
+    {
+        return $this->adress;
+    }
+
+    public function setAdress(string $adress): self
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getSpecialite(): ?string
+    {
+        return $this->specialite;
+    }
+
+    public function setSpecialite(string $specialite): self
+    {
+        $this->specialite = $specialite;
 
         return $this;
     }

@@ -110,6 +110,11 @@ php bin/console doctrine:migrations:migrate
     name
     cp
 
+## Creation restaurant Controler
+
+php bin/console make:controller
+ceci génère automatiquement un template
+
 
 ## Git Clone Recup projet
 git clone + le nom du projet.
