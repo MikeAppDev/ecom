@@ -30,6 +30,10 @@ template création pour modifier afficher
 Création de la base de donnée
 php bin/console doctrine:database:create
 
+## serveur
+php -S localhost:8000 -t public/
+
+
 ## User et conection
 
 composer require symfony/security-bundle
@@ -77,7 +81,7 @@ php bin/console doctrine:migrations:migrate
     cp
 
 
-## Git Clone
+## Git Clone Recup projet
 git clone + le nom du projet.
 composer install
 
