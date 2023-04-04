@@ -8,14 +8,15 @@
 <div class="pt-3 text-center">
     <br>
         <h1>Accueil</h1>
-    <br>    
+    <br>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         BIENVENU <br><span style="font-size: 3em; color: green;">{{ app.user.name }} !</span>
     {% else %}
     <p>Bonjour, merci de vous connecter pour profiter de toutes les incroyables fonctionnalités de ce site !</p>
     {% endif %}
     <br>
-
-    {# <p> {{ dump(données) }} </p> #}
+    {% for donnee in donnees %}
+        <p>{{ donnee.name }}</p>
+    {% endfor %}
     </div>
 {% endblock %}

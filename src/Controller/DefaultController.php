@@ -6,6 +6,7 @@ use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class DefaultController extends AbstractController
 {
 
@@ -17,6 +18,8 @@ class DefaultController extends AbstractController
 
 
         // Affichage de la vue
-        return $this->render('default/homepage.html.twig',);
+        return $this->render('default/homepage.html.twig', [
+            'donnees'=>$donnees
+        ]);
     }
 }
