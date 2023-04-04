@@ -23,6 +23,8 @@ npm install @symfony/webpack-encore --save-dev
 creation default controller
 template création pour modifier afficher
 
+
+
 ## Base de donnée
 
 Création de la base de donnée
@@ -74,3 +76,13 @@ php bin/console doctrine:migrations:migrate
     name
     cp
 
+
+## Git Clone
+git clone + le nom du projet.
+composer install
+
+composer require symfony/webpack-encore-bundle
+npm install
+npm install @symfony/webpack-encore --save-dev
+
+php bin/console doctrine:database:create
