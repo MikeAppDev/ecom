@@ -17,7 +17,16 @@ composer require symfony/webpack-encore-bundle
 
 npm install
 
-npm install @symfony/webpack-encore --save-dev
+npm install @symfony/webpack-encore --save-dev 
+
+npm run dev
+
+### Utiliser SASS
+
+* npm install sass-loader@^13.0.0 sass --save-dev
+* Modifier la configuration dans le fichier *webpack.config.js* à la racine du projet (décommenter la ligne "enableSassLoader" pour compiler le sass)
+* Dans le fichier *assets/app.js*, changer l'import et importer un fichier *app.scss*
+* Dans le dossiers assets, créer un fichier *app.scss* avec votre SASS
 
 ## Default Controller
 creation default controller
