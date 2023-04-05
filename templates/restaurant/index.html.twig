@@ -13,7 +13,8 @@
 
     <br>
     {% for donnee in donnees %}
-        <p>{{ donnee.name }}</p>
+        <h3><a class="text-dark" href="{{ path('restaurant.show', {slug: donnee.slug}) }}">{{ donnee.name }}</a></h3>
+        {# <p>{{ donnee.name }}</p> #}
     {% endfor %}
     </div>
 {% endblock %}
