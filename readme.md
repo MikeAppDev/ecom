@@ -124,6 +124,9 @@ php bin/console doctrine:migrations:migrate
 php bin/console make:controller
 ceci génère automatiquement un template
 
+## Creation Play CRUD
+php bin/console make:crud Plat
+
 
 ## Git Clone Recup projet
 git clone + le nom du projet.

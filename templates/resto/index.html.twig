@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant index{% endblock %}
+
+{% block body %}
+    <h1>Restaurant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Name</th>
+                <th>Cp</th>
+                <th>Adress</th>
+                <th>Specialite</th>
+                {# <th>Slug</th> #}
+                {# <th>Avis</th> #}
+                <th>Description</th>
+                {# <th>Longitude</th> #}
+                {# <th>Latitude</th> #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                {# <td>{{ restaurant.id }}</td> #}
+                <td>{{ restaurant.name }}</td>
+                <td>{{ restaurant.cp }}</td>
+                <td>{{ restaurant.adress }}</td>
+                <td>{{ restaurant.specialite }}</td>
+                {# <td>{{ restaurant.slug }}</td> #}
+                {# <td>{{ restaurant.avis }}</td> #}
+                <td>{{ restaurant.description }}</td>
+                {# <td>{{ restaurant.longitude }}</td> #}
+                {# <td>{{ restaurant.latitude }}</td> #}
+                <td>
+                    <a href="{{ path('restaurant.show', {'slug': restaurant.slug}) }}">show</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_resto_edit', {'id': restaurant.id}) }}">edit</a>
+                {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_resto_new') }}">Create new</a>
+{% endblock %}

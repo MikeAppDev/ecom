@@ -28,7 +28,7 @@
                                 <a class="nav-link" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('restaurants') }}">Restaurants</a>
+                                    <a class="nav-link" href="{{ path('app_resto_index') }}">Restaurants</a>
                             </li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_plat_index') }}">Plat</a>
@@ -44,6 +44,7 @@
                             <li class="nav-item">
                                     {# <a class="nav-link" href="{{ path('profile') }}">Profile</a> #}
                             </li>
+
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ path('logout') }}">Se Deconnecter</a>
                             </li>
@@ -60,9 +61,14 @@
                             <li class="nav-item">
                                     {# <a class="nav-link" href="{{ path('admin') }}">Panel Admin</a> #}
                             </li>
+                            
                             {% endif %}
                         </ul>
+
+                        
+                            
                     </div>
+                    <a class="nav-link text-light" href="#">Panier</a>
                 </div>
             </nav>
         </header>
