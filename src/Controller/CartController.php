@@ -14,7 +14,7 @@ class CartController extends AbstractController
     public function index(SessionInterface $session): Response
     {
 
-        $cart = $session->get('cart');
+        $cart = $session->get('cart', []);
 
 
         return $this->render('cart/index.html.twig', [
@@ -26,12 +26,26 @@ class CartController extends AbstractController
     public function addToCart(Request $request, int $platId): Response
     {
         $session = $request->getSession();
-        $quantity = $request->get('quantity');
+        //$quantity = $request->get('quantity');
 
-        $this->addFlash('notice', "Le produit a été ajouté au panier");
-        $cart = $session->get('cart');
+        //Pour vider la session en cas d'erreur
+        //$session->set('cart', []);
+        
+        $cart = $session->get('cart', []);
+        //dd($cart);
+        if (!isset($cart[$platId])) {
+            // Si le produit n'existe pas encore dans le panier
+            $cart[$platId] = [
+                'name' => $request->get('name'),
+                'price' => $request->get('price'),
+                'quantity' => $request->get('quantity')
+            ];
+        } else {
+            // Si le produit existe déjà dans le panier, augmenter la quantité
+            $cart[$platId]['quantity']++;
+        }
 
-        $cart[$platId] = $quantity;
+        //$cart[$platId] = $quantity;
 
         $session->set('cart', $cart);
         // dd($session->get('cart'));
