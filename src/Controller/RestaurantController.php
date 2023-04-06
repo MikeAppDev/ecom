@@ -35,7 +35,7 @@ class RestaurantController extends AbstractController
         $plats = $restaurant->getPlats();
         $plats = $plats->map(function(Plat $plat) use ($cart) {
             if (isset($cart[$plat->getId()])) {
-                $plat->quantity = $cart[$plat->getId()];
+                $plat->quantity = $cart[$plat->getId()]['quantity'];
             } else {
                 $plat->quantity = null;
             }
