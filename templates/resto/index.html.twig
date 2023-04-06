@@ -37,7 +37,7 @@
                 {# <td>{{ restaurant.longitude }}</td> #}
                 {# <td>{{ restaurant.latitude }}</td> #}
                 <td>
-                    <a href="{{ path('restaurant.show', {'slug': restaurant.slug}) }}">show</a>
+                    <a href="{{ path('restaurant.show', {'slug': restaurant.slug}) }}"><i class="fas fa-eye"></i> Show</a>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_resto_edit', {'id': restaurant.id}) }}">edit</a>
                 {% endif %}
@@ -51,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_resto_new') }}">Create new</a>
+    <a href="{{ path('app_resto_new') }}"><i class="fas fa-plus"></i> Create new</a>
 {% endblock %}

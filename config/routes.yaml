@@ -11,6 +11,7 @@ homepage:
 restaurant.show:
     path: /restaurants/show/{slug}
     controller: App\Controller\RestaurantController::show
+    methods: GET
 
 logout:
     path: logout

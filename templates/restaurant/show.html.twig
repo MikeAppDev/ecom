@@ -20,6 +20,13 @@
             <p class="fw-bold">{{ i.name }}</p>
             <img class="border border-secondary rounded" style="width:10rem;" src={{i.picture}}>
             <p class="fst-italic">Prix : {{ i.price }}€</p>
+
+            <form method="post" action="{{ path('app_add_cart', {platId: i.id}) }}">
+                <label for="quantity">Ajouter au panier</label>
+                <input type="number" id="quantity" name="quantity" value="{{ i.quantity }}">
+                <button>Ajouter au panier</button>
+            </form>
+
             {% endfor %}
             
 

@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Plat;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RestaurantController extends AbstractController
@@ -24,8 +26,14 @@ class RestaurantController extends AbstractController
     }
 
     #[Route('/restaurants/show/{slug}', name: 'restaurants/{slug}')]
-    public function show(string $slug, RestaurantRepository $repository, EntityManagerInterface $doctrine): Response
+    public function show(string $slug, RestaurantRepository $repository, EntityManagerInterface $doctrine, SessionInterface $session, Plat $plat): Response
     {
+        $cart = $session->get('cart');
+
+        if (isset($cart[$plat->getId()])) {
+            $quantity = $cart[$plat->getId()];
+        }
+        dd($session->get('cart'));
         //$entityManager = $doctrine->getManager();
         //$announce = $doctrine->getRepository(Announce::class)->find($id);
         $restaurant = $repository->findOneBy(['slug' => $slug]);
@@ -37,6 +45,7 @@ class RestaurantController extends AbstractController
         return $this->render('restaurant/show.html.twig', [
             'restaurant' => $restaurant,
             'slug' => $restaurant->getSlug(),
+            'quantity' => $quantity
         ]);
     }
 }

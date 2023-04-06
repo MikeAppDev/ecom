@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Plat;
 use App\Entity\Restaurant;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/resto')]
@@ -41,10 +43,17 @@ class RestoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_resto_show', methods: ['GET'])]
-    public function show(Restaurant $restaurant): Response
+    public function show(Restaurant $restaurant, SessionInterface $session, Plat $plat): Response
     {
+        $cart = $session->get('cart');
+
+        if (isset($cart[$plat->getId()])){
+            $quantity = $cart[$plat->getId()];
+        }
+
         return $this->render('resto/show.html.twig', [
             'restaurant' => $restaurant,
+            'quantity' => $quantity
         ]);
     }
 

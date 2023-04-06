@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+    <h1>Votre panier</h1>
+    <uL>
+    {% for id, quantity in cart %}
+        <li> {{ id }} : {{ quantity }} </li>
+    {% endfor %}
+    </il>
+
+
+{% endblock %}
