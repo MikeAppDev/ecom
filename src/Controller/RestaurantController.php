@@ -26,26 +26,32 @@ class RestaurantController extends AbstractController
     }
 
     #[Route('/restaurants/show/{slug}', name: 'restaurants/{slug}')]
-    public function show(string $slug, RestaurantRepository $repository, EntityManagerInterface $doctrine, SessionInterface $session, Plat $plat): Response
+    public function show(string $slug, RestaurantRepository $repository, EntityManagerInterface $doctrine, SessionInterface $session): Response
     {
-        $cart = $session->get('cart');
-
-        if (isset($cart[$plat->getId()])) {
-            $quantity = $cart[$plat->getId()];
-        }
-        dd($session->get('cart'));
         //$entityManager = $doctrine->getManager();
         //$announce = $doctrine->getRepository(Announce::class)->find($id);
         $restaurant = $repository->findOneBy(['slug' => $slug]);
+        $cart = $session->get('cart');
+        $plats = $restaurant->getPlats();
+        $plats = $plats->map(function(Plat $plat) use ($cart) {
+            if (isset($cart[$plat->getId()])) {
+                $plat->quantity = $cart[$plat->getId()];
+            } else {
+                $plat->quantity = null;
+            }
+            return $plat;
+        });
+
+        //dd($plats, $cart);
 
         if (!$restaurant) {
             throw $this->createNotFoundException("Le restaurant n'existe pas");
         }
-        
+
         return $this->render('restaurant/show.html.twig', [
             'restaurant' => $restaurant,
             'slug' => $restaurant->getSlug(),
-            'quantity' => $quantity
+            'plats' => $plats
         ]);
     }
 }
