@@ -28,6 +28,7 @@ class CartController extends AbstractController
         $session = $request->getSession();
         $quantity = $request->get('quantity');
 
+        $this->addFlash('notice', "Le produit a été ajouté au panier");
         $cart = $session->get('cart');
 
         $cart[$platId] = $quantity;
