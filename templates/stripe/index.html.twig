@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    {# {{ encore_entry_script_tags('checkout') }} #}
+    <script src="{{asset('build/checkout.js')}}" defer></script>
+    {{ parent() }}
+{% endblock %}    
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="styles/checkout.css" />
+{% endblock %}
+
+{% block body %}
+ <!-- Display a payment form -->
+    <form id="payment-form" data-callback="{{ path('app_stripe') }}">
+      <div id="link-authentication-element">
+        <!--Stripe.js injects the Link Authentication Element-->
+      </div>
+      <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+      </div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pay now</span>
+      </button>
+      <div id="payment-message" class="hidden"></div>
+    </form>
+{% endblock %}

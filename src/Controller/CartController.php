@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
-use App\Entity\Product;
 use App\Repository\PlatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +27,7 @@ class CartController extends AbstractController
             $product = $repository->find($id);
 
             // on lui affecte la quantité
+            
             $product->setQuantity($quantity);
 
             $products[] = $product;
@@ -48,6 +48,7 @@ class CartController extends AbstractController
     {
         $session = $request->getSession();
         $quantity = $request->get('quantity');
+        
 
         //Pour vider la session en cas d'erreur
         //$session->set('cart', []);

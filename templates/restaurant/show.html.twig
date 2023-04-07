@@ -28,7 +28,7 @@
 
             <form method="post" action="{{ path('app_add_cart', {platId: i.id}) }}">
                 <label for="quantity">Ajouter au panier</label>
-                <input type="number" id="quantity" name="quantity" value="{{ i.quantity }}">
+                <input type="number" id="quantity" name="quantity" value="{{ i.quantity | default("1") }}" min="1">
                 <button>Ajouter au panier</button>
             </form>
             {% endfor %}

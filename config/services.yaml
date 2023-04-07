@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
 
+    stripe.publishable_key: pk_test_51JNcN3G6EY8YBpG2plvcoRuNr8oM0g1OuhxL3rn7lc86jOM8dprrOxqHqMytMzB4JwSyZ5bSDufXjv4gRU7UsIZi000p37rT4D
+    stripe.secret_key: sk_test_51JNcN3G6EY8YBpG2TGa9toY6J8G24QZ6TwZ17SMdM0LQvYniWqyml2CmCufaO2W4hwhX6DB7fyP6JuTGKdVGlVgD00hqdpfou5
+
 services:
     # default configuration for services in *this* file
     _defaults:
