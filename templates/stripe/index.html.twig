@@ -5,13 +5,9 @@
 {% block javascripts %}
     <script src="https://js.stripe.com/v3/"></script>
     {# {{ encore_entry_script_tags('checkout') }} #}
-    <script src="{{asset('build/checkout.js')}}" defer></script>
+    <script src="{{asset('js/checkout.js')}}" defer></script>
     {{ parent() }}
 {% endblock %}    
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="styles/checkout.css" />
-{% endblock %}
 
 {% block body %}
  <!-- Display a payment form -->
