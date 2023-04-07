@@ -3,12 +3,59 @@
 {% block title %}Page panier{% endblock %}
 
 {% block body %}
-    <h1>Votre panier</h1>
+    {# <h1>Votre panier</h1>
     <ul>
-    {% for id, product in cart %}
-        <li> {{ product.name }} : {{ product.quantity }} </li>
+    {% for product in cart %}
+        <li> {{ product.name }} : {{ product.price }} € x {{ product.quantity }} = {{ product.price * product.quantity }} </li>
     {% endfor %}
-    </ul>
+    </ul> #}
 
+    <h1>Votre panier</h1>
 
+    {% if cart|length > 0 %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    {# <th>Description</th> #}
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Prix total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in cart %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        {# <td>{{ product.description }}</td> #}
+                        <td>{{ product.price|number_format(2) }}€</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ (product.quantity * product.price)|number_format(2) }}€</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Sous-total</th>
+                    <th>{{ total|number_format(2) }}€</th>
+                </tr>
+                <tr>
+                    <th colspan="4">Frais de service</th>
+                    <th>{{ (total * 0.1)|number_format(2) }}€</th>
+                </tr>
+                <tr>
+                    <th colspan="4">Total de la commande</th>
+                    <th>{{ (total * 1.1)|number_format(2) }}€</th>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Panier Vide
+        </div>
+    {% endif %}
+
+    <nav>
+        <a class="btn btn-danger" href="{{ path('app_cart_clear') }}">Vider le panier</a>
+    </nav>
 {% endblock %}

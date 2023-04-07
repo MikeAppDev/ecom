@@ -25,6 +25,8 @@ class Plat
     #[ORM\ManyToOne(inversedBy: 'plats')]
     private ?Restaurant $restaurant = null;
 
+    private ?int $quantity = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +76,19 @@ class Plat
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    // quantity
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

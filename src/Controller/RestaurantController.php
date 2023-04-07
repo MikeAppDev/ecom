@@ -33,12 +33,14 @@ class RestaurantController extends AbstractController
         $restaurant = $repository->findOneBy(['slug' => $slug]);
         $cart = $session->get('cart');
         $plats = $restaurant->getPlats();
+
         $plats = $plats->map(function(Plat $plat) use ($cart) {
+            // Si le produit se trouve dans le panier
+            //on lui ajoute la quantité du panier
             if (isset($cart[$plat->getId()])) {
-                $plat->quantity = $cart[$plat->getId()]['quantity'];
-            } else {
-                $plat->quantity = null;
+                $plat->setQuantity($cart[$plat->getId()]['quantity']) ;
             }
+
             return $plat;
         });
 
